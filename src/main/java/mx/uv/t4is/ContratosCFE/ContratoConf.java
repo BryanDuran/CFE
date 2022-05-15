@@ -16,7 +16,7 @@ import org.springframework.xml.xsd.XsdSchema;
 public class ContratoConf {
     @Bean
     public XsdSchema ContratoSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("contrato.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("contratos.xsd"));
     }
 
     @Bean
@@ -32,7 +32,7 @@ public class ContratoConf {
         DefaultWsdl11Definition wsdl = new DefaultWsdl11Definition();
         wsdl.setPortTypeName("contratosPort");
         wsdl.setLocationUri("/ws");
-        wsdl.setTargetNamespace("http://t4is.uv.mx/contrato");
+        wsdl.setTargetNamespace("http://t4is.uv.mx/contratos");
         wsdl.setSchema(contratos);
         return wsdl;
     }

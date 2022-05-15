@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
- targetNamespace="http://t4is.uv.mx/contrato"
- xmlns:tns="http://t4is.uv.mx/contrato"
+ targetNamespace="http://t4is.uv.mx/contratos"
+ xmlns:tns="http://t4is.uv.mx/contratos"
  elementFormDefault="qualified">
 <!-- AGREGAR CONTRATO -->
 <xs:element name="AgregarContratoRequest">

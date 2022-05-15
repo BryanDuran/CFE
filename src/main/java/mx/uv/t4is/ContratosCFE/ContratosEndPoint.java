@@ -16,7 +16,7 @@ public class ContratosEndPoint {
     private Icontratos icontratos;
     
     //AGREGAR CONTRATO
-    @PayloadRoot(namespace = "https://t4is.uv.mx/contrato", localPart = "AgregarContratoRequest")
+/*     @PayloadRoot(namespace = "https://t4is.uv.mx/contrato", localPart = "AgregarContratoRequest")
     @ResponsePayload
     public AgregarContratoResponse agregarContrato(@RequestPayload AgregarContratoRequest peticion) {
         AgregarContratoResponse respuesta = new AgregarContratoResponse();
@@ -33,7 +33,7 @@ public class ContratosEndPoint {
         icontratos.save(contrato);
 
         return respuesta;
-    }
+    } */
 
     
 }
