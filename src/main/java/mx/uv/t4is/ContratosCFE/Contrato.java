@@ -1,7 +1,16 @@
 package mx.uv.t4is.ContratosCFE;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 //nombre,domicilio,telefono,nContrato,pago,firmaE
+@Entity
 public class Contrato {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     private String nombre;
     private String domicilio;
@@ -35,7 +44,7 @@ public class Contrato {
     public int getTelefono() {
         return telefono;
     }
-    
+
     public void setTelefono(int telefono){
         this.telefono = telefono;
     }
@@ -59,13 +68,9 @@ public class Contrato {
     public String getFirmaE() {
         return firmaE;
     }
-    
+
     public void setFirmaE(String firmaE){
         this.firmaE = firmaE;
     }
-    
-    
-   
-    
-    
+
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+ targetNamespace="http://t4is.uv.mx/contrato"
+ xmlns:tns="http://t4is.uv.mx/contrato"
+ elementFormDefault="qualified">
+<!-- AGREGAR CONTRATO -->
+<xs:element name="AgregarContratoRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="nContrato" type="xs:int"/>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="domicilio" type="xs:string"/>
+            <xs:element name="telefono" type="xs:int"/>
+            <xs:element name="firmaElectronica" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+<xs:element name="AgregarContratoResponse">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="respuesta" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+</xs:schema> 
