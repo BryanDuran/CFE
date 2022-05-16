@@ -24,5 +24,20 @@
 <!-- CONSULTAR CONTRATO -->
 
 
+<!-- DAR DE BAJA SERVICIO /ELIMINAR-->
+<xs:element name="CancelarServicioRequest">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="ncontrato" type="xs:int" />            
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="CancelarServicioResponse">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="respuesta" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
 
 </xs:schema> 

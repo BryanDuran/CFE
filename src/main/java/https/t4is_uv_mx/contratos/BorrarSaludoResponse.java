@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
 // Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2022.05.15 a las 10:50:46 PM CDT 
+// Generado el: 2022.05.15 a las 10:12:03 PM CDT 
 //
 
 
@@ -10,7 +10,6 @@ package https.t4is_uv_mx.contratos;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="respuesta" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="respuesta" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -38,33 +37,24 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "respuesta"
 })
-@XmlRootElement(name = "AgregarContratoResponse")
-public class AgregarContratoResponse {
+@XmlRootElement(name = "BorrarSaludoResponse")
+public class BorrarSaludoResponse {
 
-    @XmlElement(required = true)
-    protected String respuesta;
+    protected boolean respuesta;
 
     /**
      * Obtiene el valor de la propiedad respuesta.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getRespuesta() {
+    public boolean isRespuesta() {
         return respuesta;
     }
 
     /**
      * Define el valor de la propiedad respuesta.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setRespuesta(String value) {
+    public void setRespuesta(boolean value) {
         this.respuesta = value;
     }
 

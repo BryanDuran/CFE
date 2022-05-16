@@ -8,6 +8,8 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import https.t4is_uv_mx.contratos.AgregarContratoRequest;
 import https.t4is_uv_mx.contratos.AgregarContratoResponse;
+import https.t4is_uv_mx.contratos.CancelarServicioRequest;
+import https.t4is_uv_mx.contratos.CancelarServicioResponse;
 
 @Endpoint
 public class ContratosEndPoint {
@@ -16,7 +18,7 @@ public class ContratosEndPoint {
     private Icontratos icontratos;
      
     //AGREGAR CONTRATO
-    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "AgregarContratoRequest")    
+    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "AgregarContratoRequest")
     @ResponsePayload
     public AgregarContratoResponse agregarContrato(@RequestPayload AgregarContratoRequest peticion) {
 
@@ -34,7 +36,7 @@ public class ContratosEndPoint {
         //if(contrato.c)
         //icontratos.save(contrato);
          if(contrato.validacion(peticion.getNombre(), peticion.getDomicilio(), peticion.getTelefono(), peticion.getFirmae()) == true){
-            respuesta.setRespuesta("Ha ocurrido un error al crear el contrato, por favor vuelve a intentarlo.") ;
+            respuesta.setRespuesta("Ha ocurrido un error al crear el contrato, por favor vuelve a intentarlo. Al parecer olvidaste un dato.") ;
         }else{
             contrato.setNombre(peticion.getNombre());
             contrato.setDomicilio(peticion.getDomicilio());
@@ -49,5 +51,23 @@ public class ContratosEndPoint {
 
     //CONSULTAR CONTRATO
 
-    
+    //CANCELAR SERVICIO
+    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "CancelarServicioRequest")
+    @ResponsePayload
+    public CancelarServicioResponse eliminarTarea(@RequestPayload CancelarServicioRequest peticion){
+        CancelarServicioResponse respuesta = new CancelarServicioResponse();
+
+        String ncontrato = Integer.toString(peticion.getNcontrato());
+
+        if (ncontrato.isEmpty()) {
+            respuesta.setRespuesta("Ha ocurrido un error al cancelar el servicio, por favor vuelve a intentarlo.") ;
+        }else{
+            icontratos.deleteById(peticion.getNcontrato());
+            respuesta.setRespuesta("Has cancelado con éxito tu servicio. Adios.");
+        }
+
+        
+        return respuesta;
+    }
+
 }

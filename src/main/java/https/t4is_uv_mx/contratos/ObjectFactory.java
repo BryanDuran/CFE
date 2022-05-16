@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
 // Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2022.05.15 a las 08:22:54 PM CDT 
+// Generado el: 2022.05.15 a las 10:50:46 PM CDT 
 //
 
 
@@ -50,6 +50,22 @@ public class ObjectFactory {
      */
     public AgregarContratoResponse createAgregarContratoResponse() {
         return new AgregarContratoResponse();
+    }
+
+    /**
+     * Create an instance of {@link CancelarServicioRequest }
+     * 
+     */
+    public CancelarServicioRequest createCancelarServicioRequest() {
+        return new CancelarServicioRequest();
+    }
+
+    /**
+     * Create an instance of {@link CancelarServicioResponse }
+     * 
+     */
+    public CancelarServicioResponse createCancelarServicioResponse() {
+        return new CancelarServicioResponse();
     }
 
 }
