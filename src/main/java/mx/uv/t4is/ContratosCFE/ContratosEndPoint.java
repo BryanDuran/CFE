@@ -23,17 +23,31 @@ public class ContratosEndPoint {
         AgregarContratoResponse respuesta = new AgregarContratoResponse();
 
         Contrato contrato = new Contrato();
-
-        contrato.setNombre(peticion.getNombre());
+        //String tel = Integer.toString(peticion.getTelefono());  
+/*         contrato.setNombre(peticion.getNombre());
         contrato.setDomicilio(peticion.getDomicilio());
         contrato.setTelefono(peticion.getTelefono());
-        contrato.setFirmae(peticion.getFirmae());
+        contrato.setFirmae(peticion.getFirmae()); */
 
-        icontratos.save(contrato);
-        respuesta.setRespuesta("Contrado Creado con los datos: "+ peticion.getNombre()) ;
+        //icontratos.save(contrato);
+        //respuesta.setRespuesta("Contrado Creado con los datos: "+ peticion.getNombre()) ;
+        //if(contrato.c)
+        //icontratos.save(contrato);
+         if(contrato.validacion(peticion.getNombre(), peticion.getDomicilio(), peticion.getTelefono(), peticion.getFirmae()) == true){
+            respuesta.setRespuesta("Ha ocurrido un error al crear el contrato, por favor vuelve a intentarlo.") ;
+        }else{
+            contrato.setNombre(peticion.getNombre());
+            contrato.setDomicilio(peticion.getDomicilio());
+            contrato.setTelefono(peticion.getTelefono());
+            contrato.setFirmae(peticion.getFirmae());
+            icontratos.save(contrato);
+            respuesta.setRespuesta("Contrado Creado con los datos: "+ peticion.getNombre()) ;
+        }
 
         return respuesta;
     }
+
+    //CONSULTAR CONTRATO
 
     
 }

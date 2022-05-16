@@ -80,6 +80,19 @@ public class Contrato {
         this.firmae = firmae;
     }
 
+    public boolean validacion(String nombre,String domicilio,int telefono,String firmae){
+
+        boolean esvalido = false;
+        String tel = Integer.toString(telefono);
+
+        if(nombre.isEmpty() || domicilio.isEmpty() || tel.isEmpty() || firmae.isEmpty()){
+            esvalido = true;
+        }else{
+            esvalido = false;
+        }
+
+        return esvalido;
+    }
 
 
 }

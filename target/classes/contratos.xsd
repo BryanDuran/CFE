@@ -21,5 +21,8 @@
         </xs:sequence>
     </xs:complexType>
 </xs:element>
+<!-- CONSULTAR CONTRATO -->
+
+
 
 </xs:schema> 
