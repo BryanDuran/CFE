@@ -1,39 +1,39 @@
 package mx.uv.t4is.ContratosCFE;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import https.t4is_uv_mx.contratos.AgregarContratoRequest;
+import https.t4is_uv_mx.contratos.AgregarContratoResponse;
+
 @Endpoint
 public class ContratosEndPoint {
 
     @Autowired
     private Icontratos icontratos;
-    
+     
     //AGREGAR CONTRATO
-/*     @PayloadRoot(namespace = "https://t4is.uv.mx/contrato", localPart = "AgregarContratoRequest")
+    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "AgregarContratoRequest")    
     @ResponsePayload
     public AgregarContratoResponse agregarContrato(@RequestPayload AgregarContratoRequest peticion) {
+
         AgregarContratoResponse respuesta = new AgregarContratoResponse();
 
         Contrato contrato = new Contrato();
-        
-        respuesta.setRespuesta(peticion.getNContrato());
-        respuesta.setRespuesta(peticion.getNombre());
-        respuesta.setRespuesta(peticion.getDomicilio());
-        respuesta.setRespuesta(peticion.getTelefono());
-        respuesta.setRespuesta(peticion.getFirmaE());
 
-        //respuesta.setRespuesta(true);
+        contrato.setNombre(peticion.getNombre());
+        contrato.setDomicilio(peticion.getDomicilio());
+        contrato.setTelefono(peticion.getTelefono());
+        contrato.setFirmae(peticion.getFirmae());
+
         icontratos.save(contrato);
+        respuesta.setRespuesta("Contrado Creado con los datos: "+ peticion.getNombre()) ;
 
         return respuesta;
-    } */
+    }
 
     
 }

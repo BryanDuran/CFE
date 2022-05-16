@@ -11,33 +11,40 @@ public class Contrato {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    //private int ncontrato;
+    private int id;
 
     private String nombre;
     private String domicilio;
     private int telefono;
-    private int nContrato;
     private int pago;
-    private String firmaE;
+    private String firmae;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Contrato() {
 
     }
 
-    public String getNombre(){
+    public String getNombre() {
         return nombre;
-
     }
 
-    public void setNombre(String nombre){
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 
     public String getDomicilio() {
         return domicilio;
     }
 
-    public void setDomicilio(String domicilio){
+    public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
 
@@ -45,32 +52,34 @@ public class Contrato {
         return telefono;
     }
 
-    public void setTelefono(int telefono){
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
-    public int getNContrato() {
-        return nContrato;
+/*     public int getNcontrato() {
+        return ncontrato;
     }
 
-    public void setNContrato(int nContrato){
-        this.nContrato = nContrato;
-    }
+    public void setNcontrato(int ncontrato) {
+        this.ncontrato = ncontrato;
+    } */
 
     public int getPago() {
         return pago;
     }
 
-    public void setPago(int pago){
+    public void setPago(int pago) {
         this.pago = pago;
     }
 
-    public String getFirmaE() {
-        return firmaE;
+    public String getFirmae() {
+        return firmae;
     }
 
-    public void setFirmaE(String firmaE){
-        this.firmaE = firmaE;
+    public void setFirmae(String firmae) {
+        this.firmae = firmae;
     }
+
+
 
 }

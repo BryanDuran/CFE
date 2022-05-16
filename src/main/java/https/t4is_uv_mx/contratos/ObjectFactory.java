@@ -2,11 +2,11 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
 // Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2022.05.15 a las 01:49:19 PM CDT 
+// Generado el: 2022.05.15 a las 07:28:24 PM CDT 
 //
 
 
-package mx.uv.t4is.contratos;
+package https.t4is_uv_mx.contratos;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the mx.uv.t4is.contratos package. 
+ * generated in the https.t4is_uv_mx.contratos package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -30,7 +30,7 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: mx.uv.t4is.contratos
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: https.t4is_uv_mx.contratos
      * 
      */
     public ObjectFactory() {

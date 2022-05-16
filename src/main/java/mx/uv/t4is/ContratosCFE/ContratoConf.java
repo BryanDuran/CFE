@@ -28,12 +28,12 @@ public class ContratoConf {
     }
     //
     @Bean(name="contratos")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema contratos) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema contratosSchema) {
         DefaultWsdl11Definition wsdl = new DefaultWsdl11Definition();
         wsdl.setPortTypeName("contratosPort");
         wsdl.setLocationUri("/ws");
-        wsdl.setTargetNamespace("http://t4is.uv.mx/contratos");
-        wsdl.setSchema(contratos);
+        wsdl.setTargetNamespace("https://t4is.uv.mx/contratos");
+        wsdl.setSchema(contratosSchema);
         return wsdl;
     }
 }
