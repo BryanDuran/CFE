@@ -27,16 +27,7 @@ public class ContratosEndPoint {
         AgregarContratoResponse respuesta = new AgregarContratoResponse();
 
         Contrato contrato = new Contrato();
-        //String tel = Integer.toString(peticion.getTelefono());  
-/*         contrato.setNombre(peticion.getNombre());
-        contrato.setDomicilio(peticion.getDomicilio());
-        contrato.setTelefono(peticion.getTelefono());
-        contrato.setFirmae(peticion.getFirmae()); */
 
-        //icontratos.save(contrato);
-        //respuesta.setRespuesta("Contrado Creado con los datos: "+ peticion.getNombre()) ;
-        //if(contrato.c)
-        //icontratos.save(contrato);
          if(contrato.validacion(peticion.getNombre(), peticion.getDomicilio(), peticion.getTelefono(), peticion.getFirmae()) == true){
             respuesta.setRespuesta("Ha ocurrido un error al crear el contrato, por favor vuelve a intentarlo. Al parecer olvidaste un dato.") ;
         }else{
@@ -59,9 +50,9 @@ public class ContratosEndPoint {
         ConsultarContratoResponse respuesta = new ConsultarContratoResponse();
         String ncontrato = Integer.toString(peticion.getNcontrato());
 
-        if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
-            //respuesta.setRespuesta("No hemos encontrado tus datos, por favor vuelve a intentarlo.") ;            
-        }else{
+/*         if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
+            respuesta.setRespuesta("No hemos encontrado tus datos, por favor vuelve a intentarlo.") ;
+        }else{ */
 
             Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(),peticion.getFirmae());
             for(Contrato cont : lista){
@@ -73,7 +64,7 @@ public class ContratosEndPoint {
                 respuesta.getContratos().add(c);
             }
 
-        }
+        //}
 
         return respuesta;
 
@@ -86,14 +77,6 @@ public class ContratosEndPoint {
         CancelarServicioResponse respuesta = new CancelarServicioResponse();
 
         String ncontrato = Integer.toString(peticion.getNcontrato());
-
-/*         if (ncontrato.isEmpty()) {
-            respuesta.setRespuesta("Ha ocurrido un error al cancelar el servicio, por favor vuelve a intentarlo.") ;
-        }else{
-            icontratos.deleteById(peticion.getNcontrato());
-            respuesta.setRespuesta("Has cancelado con éxito tu servicio. Adios.");
-        } */
-
 
         if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
             respuesta.setRespuesta("Ha ocurrido un error al cancelar el servicio, por favor vuelve a intentarlo.") ;

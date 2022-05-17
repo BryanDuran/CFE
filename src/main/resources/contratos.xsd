@@ -41,11 +41,11 @@
                 <xs:element name="ncontrato" type="xs:int" />
                 <xs:element name="nombre" type="xs:string"/>
                 <xs:element name="domicilio" type="xs:string"/>
-                <xs:element name="telefono" type="xs:int"/>                               
-             </xs:sequence>
+                <xs:element name="telefono" type="xs:int"/>
+             </xs:sequence>           
            </xs:complexType>
-       </xs:element>
-    </xs:sequence>
+     </xs:element>
+    </xs:sequence>     
   </xs:complexType>
  </xs:element>
 
