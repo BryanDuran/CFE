@@ -12,21 +12,12 @@ public class Contrato {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int ncontrato;
-    //private int id;
 
     private String nombre;
     private String domicilio;
     private int telefono;
     private int pago;
     private String firmae;
-
-/*     public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    } */
 
     public Contrato() {
 

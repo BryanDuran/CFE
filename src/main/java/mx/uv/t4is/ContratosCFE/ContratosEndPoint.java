@@ -10,6 +10,12 @@ import https.t4is_uv_mx.contratos.AgregarContratoRequest;
 import https.t4is_uv_mx.contratos.AgregarContratoResponse;
 import https.t4is_uv_mx.contratos.CancelarServicioRequest;
 import https.t4is_uv_mx.contratos.CancelarServicioResponse;
+import https.t4is_uv_mx.contratos.ConsultarContratoRequest;
+import https.t4is_uv_mx.contratos.ConsultarContratoResponse;
+import https.t4is_uv_mx.contratos.ModificarContratoRequest;
+import https.t4is_uv_mx.contratos.ModificarContratoResponse;
+import https.t4is_uv_mx.contratos.ModificarServicioRequest;
+import https.t4is_uv_mx.contratos.ModificarServicioResponse;
 
 @Endpoint
 public class ContratosEndPoint {
@@ -25,16 +31,7 @@ public class ContratosEndPoint {
         AgregarContratoResponse respuesta = new AgregarContratoResponse();
 
         Contrato contrato = new Contrato();
-        //String tel = Integer.toString(peticion.getTelefono());  
-/*         contrato.setNombre(peticion.getNombre());
-        contrato.setDomicilio(peticion.getDomicilio());
-        contrato.setTelefono(peticion.getTelefono());
-        contrato.setFirmae(peticion.getFirmae()); */
 
-        //icontratos.save(contrato);
-        //respuesta.setRespuesta("Contrado Creado con los datos: "+ peticion.getNombre()) ;
-        //if(contrato.c)
-        //icontratos.save(contrato);
          if(contrato.validacion(peticion.getNombre(), peticion.getDomicilio(), peticion.getTelefono(), peticion.getFirmae()) == true){
             respuesta.setRespuesta("Ha ocurrido un error al crear el contrato, por favor vuelve a intentarlo. Al parecer olvidaste un dato.") ;
         }else{
@@ -50,24 +47,105 @@ public class ContratosEndPoint {
     }
 
     //CONSULTAR CONTRATO
+    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "ConsultarContratoRequest")
+    @ResponsePayload    
+    public ConsultarContratoResponse consultarContrato(@RequestPayload ConsultarContratoRequest peticion){
+
+        ConsultarContratoResponse respuesta = new ConsultarContratoResponse();
+        String ncontrato = Integer.toString(peticion.getNcontrato());
+
+/*         if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
+            respuesta.setRespuesta("No hemos encontrado tus datos, por favor vuelve a intentarlo.") ;
+        }else{ */
+
+            Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(),peticion.getFirmae());
+            for(Contrato cont : lista){
+                ConsultarContratoResponse.Contratos c = new ConsultarContratoResponse.Contratos();
+                c.setNcontrato(cont.getNcontrato());
+                c.setNombre(cont.getNombre());
+                c.setDomicilio(cont.getDomicilio());
+                c.setTelefono(cont.getTelefono());                
+                respuesta.getContratos().add(c);
+            }
+
+        //}
+
+        return respuesta;
+
+    }
 
     //CANCELAR SERVICIO
     @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "CancelarServicioRequest")
     @ResponsePayload
-    public CancelarServicioResponse eliminarTarea(@RequestPayload CancelarServicioRequest peticion){
+    public CancelarServicioResponse eliminarContrato(@RequestPayload CancelarServicioRequest peticion){
         CancelarServicioResponse respuesta = new CancelarServicioResponse();
 
         String ncontrato = Integer.toString(peticion.getNcontrato());
 
-        if (ncontrato.isEmpty()) {
+        if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
             respuesta.setRespuesta("Ha ocurrido un error al cancelar el servicio, por favor vuelve a intentarlo.") ;
         }else{
-            icontratos.deleteById(peticion.getNcontrato());
-            respuesta.setRespuesta("Has cancelado con éxito tu servicio. Adios.");
+            Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(),peticion.getFirmae());
+            for(Contrato cont : lista){
+                //CancelarServicioResponse res = new CancelarServicioResponse();
+                CancelarServicioRequest res = new CancelarServicioRequest();
+                res.setNcontrato(cont.getNcontrato());
+                res.setFirmae(cont.getFirmae());
+                icontratos.deleteById(cont.getNcontrato());
+                respuesta.setRespuesta("Has cancelado con éxito tu servicio. Adios.");
+            }
+        
         }
 
-        
         return respuesta;
+    }
+
+    //MODIFICAR CONTRATO
+    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos",localPart = "ModificarServicioRequest")
+    @ResponsePayload
+    public ModificarServicioResponse modificarContrato(@RequestPayload ModificarServicioRequest peticion){
+
+        ModificarServicioResponse respuesta = new ModificarServicioResponse();
+
+        String ncontrato = Integer.toString(peticion.getNcontrato());
+
+        if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
+            respuesta.setRespuesta("Ha ocurrido un error al cancelar el servicio, por favor vuelve a intentarlo.") ;
+        }else{
+
+/*             Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(),peticion.getFirmae());
+            for(Contrato cont : lista){
+
+                ModificarServicioRequest res = new ModificarServicioRequest();
+                //Contrato mContrato = new Contrato();
+                res.setNombre(cont.getNombre());
+                res.setDomicilio(cont.getDomicilio());
+                res.setTelefono(cont.getTelefono());
+
+ /*                mContrato.setFirmae(cont.getFirmae());
+                mContrato.setNcontrato(cont.getNcontrato());
+                mContrato.setNombre(cont.getNombre());
+                mContrato.setDomicilio(cont.getDomicilio());
+                mContrato.setTelefono(cont.getTelefono()); */
+
+              //  icontratos.save(cont);
+                //respuesta.setRespuesta("Tus datos han sido modificados exitosamente.");
+            //} */
+            Contrato contrato = new Contrato();
+            contrato.setNcontrato(peticion.getNcontrato());
+            contrato.setFirmae(peticion.getFirmae());
+            contrato.setNombre(peticion.getNombre());
+            contrato.setDomicilio(peticion.getDomicilio());
+            contrato.setTelefono(peticion.getTelefono());
+            contrato.setFirmae(peticion.getFirmae());
+            icontratos.save(contrato);
+            respuesta.setRespuesta("Tus datos han sido modificados exitosamente.");
+
+        }
+
+
+        return respuesta;
+
     }
 
 }
