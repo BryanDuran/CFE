@@ -29,6 +29,7 @@
       <xs:complexType>
          <xs:sequence>
             <xs:element name="ncontrato" type="xs:int" />            
+            <xs:element name="firmae" type="xs:string" />            
          </xs:sequence>
       </xs:complexType>
    </xs:element>

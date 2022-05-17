@@ -59,14 +59,29 @@ public class ContratosEndPoint {
 
         String ncontrato = Integer.toString(peticion.getNcontrato());
 
-        if (ncontrato.isEmpty()) {
+/*         if (ncontrato.isEmpty()) {
             respuesta.setRespuesta("Ha ocurrido un error al cancelar el servicio, por favor vuelve a intentarlo.") ;
         }else{
             icontratos.deleteById(peticion.getNcontrato());
             respuesta.setRespuesta("Has cancelado con éxito tu servicio. Adios.");
+        } */
+
+
+        if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
+            respuesta.setRespuesta("Ha ocurrido un error al cancelar el servicio, por favor vuelve a intentarlo.") ;
+        }else{
+            Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(),peticion.getFirmae());
+            for(Contrato cont : lista){
+                //CancelarServicioResponse res = new CancelarServicioResponse();
+                CancelarServicioRequest res = new CancelarServicioRequest();
+                res.setNcontrato(cont.getNcontrato());
+                res.setFirmae(cont.getFirmae());
+                icontratos.deleteById(cont.getNcontrato());
+                respuesta.setRespuesta("Has cancelado con éxito tu servicio. Adios.");
+            }
+        
         }
 
-        
         return respuesta;
     }
 
