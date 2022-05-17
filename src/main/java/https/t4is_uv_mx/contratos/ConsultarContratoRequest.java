@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.XmlType;
     "ncontrato",
     "firmae"
 })
-@XmlRootElement(name = "CancelarServicioRequest")
-public class CancelarServicioRequest {
+@XmlRootElement(name = "ConsultarContratoRequest")
+public class ConsultarContratoRequest {
 
     protected int ncontrato;
     @XmlElement(required = true)

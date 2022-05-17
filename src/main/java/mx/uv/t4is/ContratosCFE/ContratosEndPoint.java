@@ -10,6 +10,8 @@ import https.t4is_uv_mx.contratos.AgregarContratoRequest;
 import https.t4is_uv_mx.contratos.AgregarContratoResponse;
 import https.t4is_uv_mx.contratos.CancelarServicioRequest;
 import https.t4is_uv_mx.contratos.CancelarServicioResponse;
+import https.t4is_uv_mx.contratos.ConsultarContratoRequest;
+import https.t4is_uv_mx.contratos.ConsultarContratoResponse;
 
 @Endpoint
 public class ContratosEndPoint {
@@ -50,11 +52,37 @@ public class ContratosEndPoint {
     }
 
     //CONSULTAR CONTRATO
+    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "ConsultarContratoRequest")
+    @ResponsePayload    
+    public ConsultarContratoResponse consultarContrato(@RequestPayload ConsultarContratoRequest peticion){
+
+        ConsultarContratoResponse respuesta = new ConsultarContratoResponse();
+        String ncontrato = Integer.toString(peticion.getNcontrato());
+
+        if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
+            //respuesta.setRespuesta("No hemos encontrado tus datos, por favor vuelve a intentarlo.") ;            
+        }else{
+
+            Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(),peticion.getFirmae());
+            for(Contrato cont : lista){
+                ConsultarContratoResponse.Contratos c = new ConsultarContratoResponse.Contratos();
+                c.setNcontrato(cont.getNcontrato());
+                c.setNombre(cont.getNombre());
+                c.setDomicilio(cont.getDomicilio());
+                c.setTelefono(cont.getTelefono());                
+                respuesta.getContratos().add(c);
+            }
+
+        }
+
+        return respuesta;
+
+    }
 
     //CANCELAR SERVICIO
     @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "CancelarServicioRequest")
     @ResponsePayload
-    public CancelarServicioResponse eliminarTarea(@RequestPayload CancelarServicioRequest peticion){
+    public CancelarServicioResponse eliminarContrato(@RequestPayload CancelarServicioRequest peticion){
         CancelarServicioResponse respuesta = new CancelarServicioResponse();
 
         String ncontrato = Integer.toString(peticion.getNcontrato());

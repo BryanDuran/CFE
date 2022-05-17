@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
 // Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2022.05.15 a las 11:08:03 PM CDT 
+// Generado el: 2022.05.16 a las 11:30:33 PM CDT 
 //
 
 
@@ -37,6 +37,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ConsultarContratoResponse }
+     * 
+     */
+    public ConsultarContratoResponse createConsultarContratoResponse() {
+        return new ConsultarContratoResponse();
+    }
+
+    /**
      * Create an instance of {@link AgregarContratoRequest }
      * 
      */
@@ -50,6 +58,22 @@ public class ObjectFactory {
      */
     public AgregarContratoResponse createAgregarContratoResponse() {
         return new AgregarContratoResponse();
+    }
+
+    /**
+     * Create an instance of {@link ConsultarContratoRequest }
+     * 
+     */
+    public ConsultarContratoRequest createConsultarContratoRequest() {
+        return new ConsultarContratoRequest();
+    }
+
+    /**
+     * Create an instance of {@link ConsultarContratoResponse.Contratos }
+     * 
+     */
+    public ConsultarContratoResponse.Contratos createConsultarContratoResponseContratos() {
+        return new ConsultarContratoResponse.Contratos();
     }
 
     /**
