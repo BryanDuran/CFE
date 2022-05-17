@@ -66,4 +66,24 @@
       </xs:complexType>
    </xs:element>
 
+   <!-- MODIFICAR EL CONTRATO -->
+ <xs:element name="ModificarServicioRequest">
+  <xs:complexType>
+    <xs:sequence>
+         <xs:element name="ncontrato" type="xs:int" />            
+         <xs:element name="firmae" type="xs:string" />
+         <xs:element name="nombre" type="xs:string"/>
+         <xs:element name="domicilio" type="xs:string"/>
+         <xs:element name="telefono" type="xs:int"/>         
+    </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModificarServicioResponse">
+    <xs:complexType>
+     <xs:sequence>
+        <xs:element name="respuesta" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+   </xs:element>
+
 </xs:schema> 
