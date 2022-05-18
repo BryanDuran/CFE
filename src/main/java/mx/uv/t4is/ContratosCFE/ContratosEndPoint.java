@@ -12,10 +12,9 @@ import https.t4is_uv_mx.contratos.CancelarServicioRequest;
 import https.t4is_uv_mx.contratos.CancelarServicioResponse;
 import https.t4is_uv_mx.contratos.ConsultarContratoRequest;
 import https.t4is_uv_mx.contratos.ConsultarContratoResponse;
-import https.t4is_uv_mx.contratos.ModificarContratoRequest;
-import https.t4is_uv_mx.contratos.ModificarContratoResponse;
 import https.t4is_uv_mx.contratos.ModificarServicioRequest;
 import https.t4is_uv_mx.contratos.ModificarServicioResponse;
+import https.t4is_uv_mx.contratos.MostrarContratosResponse;
 
 @Endpoint
 public class ContratosEndPoint {
@@ -113,24 +112,6 @@ public class ContratosEndPoint {
             respuesta.setRespuesta("Ha ocurrido un error al cancelar el servicio, por favor vuelve a intentarlo.") ;
         }else{
 
-/*             Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(),peticion.getFirmae());
-            for(Contrato cont : lista){
-
-                ModificarServicioRequest res = new ModificarServicioRequest();
-                //Contrato mContrato = new Contrato();
-                res.setNombre(cont.getNombre());
-                res.setDomicilio(cont.getDomicilio());
-                res.setTelefono(cont.getTelefono());
-
- /*                mContrato.setFirmae(cont.getFirmae());
-                mContrato.setNcontrato(cont.getNcontrato());
-                mContrato.setNombre(cont.getNombre());
-                mContrato.setDomicilio(cont.getDomicilio());
-                mContrato.setTelefono(cont.getTelefono()); */
-
-              //  icontratos.save(cont);
-                //respuesta.setRespuesta("Tus datos han sido modificados exitosamente.");
-            //} */
             Contrato contrato = new Contrato();
             contrato.setNcontrato(peticion.getNcontrato());
             contrato.setFirmae(peticion.getFirmae());
@@ -143,9 +124,25 @@ public class ContratosEndPoint {
 
         }
 
-
         return respuesta;
 
+    }
+
+    //CONSULTAR TODOS LOS CONTRATSO
+    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos",localPart = "MostrarContratosRequest")
+    @ResponsePayload
+    public MostrarContratosResponse MostrarTareas(){
+        MostrarContratosResponse respuesta = new MostrarContratosResponse();
+        Iterable<Contrato> lista = icontratos.findAll();
+        
+        for (Contrato cont : lista) {
+            MostrarContratosResponse.Contratos e = new MostrarContratosResponse.Contratos();
+            e.setNombre(cont.getNombre());
+            e.setNcontrato(cont.getNcontrato());
+            e.setFirmae(cont.getFirmae());
+            respuesta.getContratos().add(e);
+        }
+        return respuesta;
     }
 
 }
