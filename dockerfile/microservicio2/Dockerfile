@@ -1,4 +1,4 @@
-From rrojano/jdk8
+From pablolucas/jdk8
 workdir /app
 cmd ["/app/ejecutar.sh"]
 add app/PagoRest-0.0.1-SNAPSHOT.jar /app/PagoRest-0.0.1-SNAPSHOT.jar

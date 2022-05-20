@@ -1,4 +1,4 @@
-From rrojano/jdk8
+From pablolucas/jdk8
 workdir /app
 #expose 8080
 
