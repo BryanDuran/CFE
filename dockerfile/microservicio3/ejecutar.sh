@@ -1,0 +1,1 @@
+/usr/bin/java -jar -Dserver.port=$PORT FirmaRest-0.0.1-SNAPSHOT.jar
