@@ -58,7 +58,7 @@ El segundo microservicio consiste en una operación de tipo REST:
 - Generación de firma electrónica
 
 Esta operación, será descritos en breve. Este microservicio esta disponible en el siguiente enlace:
-
+https://microservicio-firma.herokuapp.com/generar
 
 
 #### Operaciones por SOAP 
@@ -75,7 +75,7 @@ Esta operación, será descritos en breve. Este microservicio esta disponible en
 
 <br>
 
-- <b>Generación de firma electrónica</b>: La persona generara su firma electrónica proporcionando su nombre completo.
+- <b>Generación de firma electrónica</b>: La persona generara su firma electrónica, para posteriormente realizar su contrato.
 - <b>Historial de pago</b>: La persona podrá ver su consumo de energía e importe del mes anterior, proporcionando firma electrónica.
 - <b>Pagar<b>: La persona pagara su servicio proporcionando su número de contrato y la cantidad a pagar.
 
