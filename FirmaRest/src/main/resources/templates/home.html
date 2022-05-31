@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ex" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Microservicio-Firma</title>
+</head>
+<body>
+
+	<h1>
+		Proyecto Tecnologías Para La Integración de Soluciones <span th:text="${Thnombre}"> </span>
+	</h1>
+	<h2>Microservicio de Firmas</h2>
+	<p>
+		Este microservicio cuenta con 2 operaciones:		
+	</p>
+	
+		<li>/firmar: Esta operación es de tipo POST, donde le es enviado el objeto Contrato. Al crear un contrato se genera una firma que servira para aunteticar otras operaciones que desee realizar con su contrato.</li>
+		<li>/validar:Esta operación es de tipo POST, donde le es enviado el objeto Contrato. Al realizar operaciones como Cancelar o Modificar está operación servira para validar los datos ingresados y permitir la operación o negarla.</li>
+	
+	<p>
+		Este microservicio es consumido por el <a href="https://t4is.herokuapp.com/contratos/">microservicio de contratos</a> para crear una firma electrónica
+		y validar esta misma al realizar otras operaciones.
+	</p>
+	<footer>
+		<h2>Equipo 4</h2>
+	</footer>
+
+</body>
+</html>
