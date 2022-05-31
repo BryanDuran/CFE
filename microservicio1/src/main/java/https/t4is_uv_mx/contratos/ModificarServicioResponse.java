@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
 // Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2022.05.20 a las 01:32:21 PM CDT 
+// Generado el: 2022.05.30 a las 09:15:25 PM CDT 
 //
 
 
@@ -25,7 +25,22 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="respuesta" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="contrato"&gt;
+ *           &lt;complexType&gt;
+ *             &lt;complexContent&gt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *                 &lt;sequence&gt;
+ *                   &lt;element name="nContrato" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *                   &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *                   &lt;element name="domicilio" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *                   &lt;element name="telefono" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *                   &lt;element name="firmae" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *                   &lt;element name="curp" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *                 &lt;/sequence&gt;
+ *               &lt;/restriction&gt;
+ *             &lt;/complexContent&gt;
+ *           &lt;/complexType&gt;
+ *         &lt;/element&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +51,222 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "respuesta"
+    "contrato"
 })
 @XmlRootElement(name = "ModificarServicioResponse")
 public class ModificarServicioResponse {
 
     @XmlElement(required = true)
-    protected String respuesta;
+    protected ModificarServicioResponse.Contrato contrato;
 
     /**
-     * Obtiene el valor de la propiedad respuesta.
+     * Obtiene el valor de la propiedad contrato.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ModificarServicioResponse.Contrato }
      *     
      */
-    public String getRespuesta() {
-        return respuesta;
+    public ModificarServicioResponse.Contrato getContrato() {
+        return contrato;
     }
 
     /**
-     * Define el valor de la propiedad respuesta.
+     * Define el valor de la propiedad contrato.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ModificarServicioResponse.Contrato }
      *     
      */
-    public void setRespuesta(String value) {
-        this.respuesta = value;
+    public void setContrato(ModificarServicioResponse.Contrato value) {
+        this.contrato = value;
+    }
+
+
+    /**
+     * <p>Clase Java para anonymous complex type.
+     * 
+     * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+     * 
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;sequence&gt;
+     *         &lt;element name="nContrato" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+     *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+     *         &lt;element name="domicilio" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+     *         &lt;element name="telefono" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+     *         &lt;element name="firmae" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+     *         &lt;element name="curp" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+     *       &lt;/sequence&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "nContrato",
+        "nombre",
+        "domicilio",
+        "telefono",
+        "firmae",
+        "curp"
+    })
+    public static class Contrato {
+
+        protected int nContrato;
+        @XmlElement(required = true)
+        protected String nombre;
+        @XmlElement(required = true)
+        protected String domicilio;
+        @XmlElement(required = true)
+        protected String telefono;
+        @XmlElement(required = true)
+        protected String firmae;
+        @XmlElement(required = true)
+        protected String curp;
+
+        /**
+         * Obtiene el valor de la propiedad nContrato.
+         * 
+         */
+        public int getNContrato() {
+            return nContrato;
+        }
+
+        /**
+         * Define el valor de la propiedad nContrato.
+         * 
+         */
+        public void setNContrato(int value) {
+            this.nContrato = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad nombre.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getNombre() {
+            return nombre;
+        }
+
+        /**
+         * Define el valor de la propiedad nombre.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setNombre(String value) {
+            this.nombre = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad domicilio.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDomicilio() {
+            return domicilio;
+        }
+
+        /**
+         * Define el valor de la propiedad domicilio.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDomicilio(String value) {
+            this.domicilio = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad telefono.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getTelefono() {
+            return telefono;
+        }
+
+        /**
+         * Define el valor de la propiedad telefono.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setTelefono(String value) {
+            this.telefono = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad firmae.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getFirmae() {
+            return firmae;
+        }
+
+        /**
+         * Define el valor de la propiedad firmae.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setFirmae(String value) {
+            this.firmae = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad curp.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getCurp() {
+            return curp;
+        }
+
+        /**
+         * Define el valor de la propiedad curp.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setCurp(String value) {
+            this.curp = value;
+        }
+
     }
 
 }

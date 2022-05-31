@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
 // Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2022.05.20 a las 01:32:21 PM CDT 
+// Generado el: 2022.05.30 a las 09:15:25 PM CDT 
 //
 
 
@@ -27,8 +27,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="domicilio" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="telefono" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="firmae" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="telefono" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="curp" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
     "nombre",
     "domicilio",
     "telefono",
-    "firmae"
+    "curp"
 })
 @XmlRootElement(name = "AgregarContratoRequest")
 public class AgregarContratoRequest {
@@ -51,9 +51,10 @@ public class AgregarContratoRequest {
     protected String nombre;
     @XmlElement(required = true)
     protected String domicilio;
-    protected int telefono;
     @XmlElement(required = true)
-    protected String firmae;
+    protected String telefono;
+    @XmlElement(required = true)
+    protected String curp;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -106,41 +107,49 @@ public class AgregarContratoRequest {
     /**
      * Obtiene el valor de la propiedad telefono.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
     /**
      * Define el valor de la propiedad telefono.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setTelefono(int value) {
+    public void setTelefono(String value) {
         this.telefono = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad firmae.
+     * Obtiene el valor de la propiedad curp.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getFirmae() {
-        return firmae;
+    public String getCurp() {
+        return curp;
     }
 
     /**
-     * Define el valor de la propiedad firmae.
+     * Define el valor de la propiedad curp.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setFirmae(String value) {
-        this.firmae = value;
+    public void setCurp(String value) {
+        this.curp = value;
     }
 
 }

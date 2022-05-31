@@ -15,12 +15,21 @@ public class Contrato {
 
     private String nombre;
     private String domicilio;
-    private int telefono;
+    private String telefono;
     private int pago;
     private String firmae;
+    private String curp;
 
     public Contrato() {
 
+    }
+
+    public String getCurp() {
+        return curp;
+    }
+
+    public void setCurp(String curp) {
+        this.curp = curp;
     }
 
     public String getNombre() {
@@ -39,11 +48,11 @@ public class Contrato {
         this.domicilio = domicilio;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -71,12 +80,12 @@ public class Contrato {
         this.firmae = firmae;
     }
 
-    public boolean validacion(String nombre,String domicilio,int telefono,String firmae){
+    public boolean validacion(String nombre,String domicilio,String telefono){
 
         boolean esvalido = false;
-        String tel = Integer.toString(telefono);
+        String tel = telefono;
 
-        if(nombre.isEmpty() || domicilio.isEmpty() || tel.isEmpty() || firmae.isEmpty()){
+        if(nombre.isEmpty() || domicilio.isEmpty() || tel.isEmpty()){
             esvalido = true;
         }else{
             esvalido = false;

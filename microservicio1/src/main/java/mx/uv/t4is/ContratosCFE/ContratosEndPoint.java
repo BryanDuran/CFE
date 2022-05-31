@@ -1,6 +1,8 @@
 package mx.uv.t4is.ContratosCFE;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -21,8 +23,8 @@ public class ContratosEndPoint {
 
     @Autowired
     private Icontratos icontratos;
-     
-    //AGREGAR CONTRATO
+
+    // AGREGAR CONTRATO
     @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "AgregarContratoRequest")
     @ResponsePayload
     public AgregarContratoResponse agregarContrato(@RequestPayload AgregarContratoRequest peticion) {
@@ -31,110 +33,170 @@ public class ContratosEndPoint {
 
         Contrato contrato = new Contrato();
 
-         if(contrato.validacion(peticion.getNombre(), peticion.getDomicilio(), peticion.getTelefono(), peticion.getFirmae()) == true){
-            respuesta.setRespuesta("Ha ocurrido un error al crear el contrato, por favor vuelve a intentarlo. Al parecer olvidaste un dato.") ;
-        }else{
+        if (contrato.validacion(peticion.getNombre(), peticion.getDomicilio(), peticion.getTelefono()) == true) {
+            respuesta.setContrato(null);
+        } else {
             contrato.setNombre(peticion.getNombre());
             contrato.setDomicilio(peticion.getDomicilio());
-            contrato.setTelefono(peticion.getTelefono());
-            contrato.setFirmae(peticion.getFirmae());
-            icontratos.save(contrato);
-            respuesta.setRespuesta("Contrado Creado con los datos: "+ peticion.getNombre()) ;
+            contrato.setTelefono(String.valueOf(peticion.getTelefono()));
+            contrato.setCurp(peticion.getCurp());
+            // contrato.setFirmae(peticion.getFirmae());
+            Contrato contratoGuardado = icontratos.save(contrato);
+
+            //
+            RestTemplate restTemplate = new RestTemplate();
+            String url = "https://microservicio-firma.herokuapp.com/firmar";
+            ResponseEntity<Contrato> contratoRespuesta = restTemplate.postForEntity(url, contratoGuardado,
+                    Contrato.class);
+            String firmae = contratoRespuesta.getBody().getFirmae();
+            contrato.setFirmae(firmae);
+            AgregarContratoResponse.Contrato contratoResponse = new AgregarContratoResponse.Contrato();
+
+            contratoResponse.setNombre(contratoGuardado.getNombre());
+            contratoResponse.setDomicilio(contratoGuardado.getDomicilio());
+            contratoResponse.setTelefono(contratoGuardado.getTelefono());
+            contratoResponse.setNContrato(contratoGuardado.getNcontrato());
+            contratoResponse.setCurp(peticion.getCurp());
+
+            contratoResponse.setFirmae(firmae);
+            //
+            respuesta.setContrato(contratoResponse);
         }
 
         return respuesta;
     }
 
-    //CONSULTAR CONTRATO
+    // CONSULTAR CONTRATO
     @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "ConsultarContratoRequest")
-    @ResponsePayload    
-    public ConsultarContratoResponse consultarContrato(@RequestPayload ConsultarContratoRequest peticion){
+    @ResponsePayload
+    public ConsultarContratoResponse consultarContrato(@RequestPayload ConsultarContratoRequest peticion) {
 
         ConsultarContratoResponse respuesta = new ConsultarContratoResponse();
         String ncontrato = Integer.toString(peticion.getNcontrato());
 
-/*         if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
-            respuesta.setRespuesta("No hemos encontrado tus datos, por favor vuelve a intentarlo.") ;
-        }else{ */
+        /*
+         * if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
+         * respuesta.
+         * setRespuesta("No hemos encontrado tus datos, por favor vuelve a intentarlo.")
+         * ;
+         * }else{
+         */
 
-            Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(),peticion.getFirmae());
-            for(Contrato cont : lista){
-                ConsultarContratoResponse.Contratos c = new ConsultarContratoResponse.Contratos();
-                c.setNcontrato(cont.getNcontrato());
-                c.setNombre(cont.getNombre());
-                c.setDomicilio(cont.getDomicilio());
-                c.setTelefono(cont.getTelefono());                
-                respuesta.getContratos().add(c);
-            }
+        Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(), peticion.getFirmae());
+        for (Contrato cont : lista) {
+            ConsultarContratoResponse.Contratos c = new ConsultarContratoResponse.Contratos();
+            c.setNcontrato(cont.getNcontrato());
+            c.setNombre(cont.getNombre());
+            c.setDomicilio(cont.getDomicilio());
+            c.setTelefono(Integer.parseInt(cont.getTelefono()));
+            respuesta.getContratos().add(c);
 
-        //}
-
-        return respuesta;
-
-    }
-
-    //CANCELAR SERVICIO
-    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "CancelarServicioRequest")
-    @ResponsePayload
-    public CancelarServicioResponse eliminarContrato(@RequestPayload CancelarServicioRequest peticion){
-        CancelarServicioResponse respuesta = new CancelarServicioResponse();
-
-        String ncontrato = Integer.toString(peticion.getNcontrato());
-
-        if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
-            respuesta.setRespuesta("Ha ocurrido un error al cancelar el servicio, por favor vuelve a intentarlo.") ;
-        }else{
-            Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(),peticion.getFirmae());
-            for(Contrato cont : lista){
-                //CancelarServicioResponse res = new CancelarServicioResponse();
-                CancelarServicioRequest res = new CancelarServicioRequest();
-                res.setNcontrato(cont.getNcontrato());
-                res.setFirmae(cont.getFirmae());
-                icontratos.deleteById(cont.getNcontrato());
-                respuesta.setRespuesta("Has cancelado con éxito tu servicio. Adios.");
-            }
-        
         }
 
+        // }
+
+        return respuesta;
+
+    }
+
+    // CANCELAR SERVICIO
+    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "CancelarServicioRequest")
+    @ResponsePayload
+    public CancelarServicioResponse eliminarContrato(@RequestPayload CancelarServicioRequest peticion) {
+
+        CancelarServicioRequest.Contrato contratoABorrar = peticion.getContrato();
+        CancelarServicioResponse respuesta = new CancelarServicioResponse();
+
+        // Se realiza la consulta a la api para obtener la validez del contrato
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://microservicio-firma.herokuapp.com/validar";
+        ResponseEntity<Boolean> esValidoRespuesta = restTemplate.postForEntity(url, contratoABorrar, Boolean.class);
+        boolean esValido = esValidoRespuesta.getBody();
+
+        //
+        if (!esValido) {
+            respuesta.setRespuesta("No se ha logrado validar su contrato.");
+            return respuesta;
+        }
+
+        int ncontrato = contratoABorrar.getNcontrato();
+
+
+        icontratos.deleteById(ncontrato);
+
+        respuesta.setRespuesta("Has cancelado con éxito tu servicio. Adios.");
+
         return respuesta;
     }
 
-    //MODIFICAR CONTRATO
-    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos",localPart = "ModificarServicioRequest")
+    // MODIFICAR CONTRATO
+    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "ModificarServicioRequest")
     @ResponsePayload
-    public ModificarServicioResponse modificarContrato(@RequestPayload ModificarServicioRequest peticion){
+    public ModificarServicioResponse modificarContrato(@RequestPayload ModificarServicioRequest peticion) {
 
         ModificarServicioResponse respuesta = new ModificarServicioResponse();
 
-        String ncontrato = Integer.toString(peticion.getNcontrato());
+        ModificarServicioRequest.ContratoAModificar contratoAModificar = peticion.getContratoAModificar();
+        ModificarServicioRequest.ContratoNuevo contratoNuevo = peticion.getContratoNuevo();
 
-        if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
-            respuesta.setRespuesta("Ha ocurrido un error al cancelar el servicio, por favor vuelve a intentarlo.") ;
-        }else{
+        // Se realiza la consulta a la api para obtener la validez del contrato
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://microservicio-firma.herokuapp.com/validar";
+        ResponseEntity<Boolean> esValidoRespuesta = restTemplate.postForEntity(url, contratoAModificar, Boolean.class);
+        boolean esValido = esValidoRespuesta.getBody();
 
-            Contrato contrato = new Contrato();
-            contrato.setNcontrato(peticion.getNcontrato());
-            contrato.setFirmae(peticion.getFirmae());
-            contrato.setNombre(peticion.getNombre());
-            contrato.setDomicilio(peticion.getDomicilio());
-            contrato.setTelefono(peticion.getTelefono());
-            contrato.setFirmae(peticion.getFirmae());
-            icontratos.save(contrato);
-            respuesta.setRespuesta("Tus datos han sido modificados exitosamente.");
-
+        // Si no es válido se retorna nulo
+        if (!esValido) {
+            respuesta.setContrato(null);
+            return respuesta;
         }
 
+        // Se actualizan los campos que se van a cambiar
+        contratoAModificar.setNombre(contratoNuevo.getNombre());
+        contratoAModificar.setDomicilio(contratoNuevo.getDomicilio());
+        contratoAModificar.setTelefono(contratoNuevo.getTelefono());
+        contratoAModificar.setFirmae(null);
+
+        //Se firma el contrato actualizado
+        RestTemplate restTemplate2 = new RestTemplate();
+        String url2 = "https://microservicio-firma.herokuapp.com/firmar";
+        ResponseEntity<Contrato> contratoRespuesta = restTemplate2.postForEntity(url2, contratoAModificar,
+                Contrato.class);
+        String firmae = contratoRespuesta.getBody().getFirmae();
+        contratoAModificar.setFirmae(firmae);
+
+        // Se crea un contrato para guardarlo
+        Contrato contrato = new Contrato();
+        contrato.setNcontrato(contratoAModificar.getNcontrato());
+        contrato.setFirmae(contratoAModificar.getFirmae());
+        contrato.setNombre(contratoAModificar.getNombre());
+        contrato.setDomicilio(contratoAModificar.getDomicilio());
+        contrato.setTelefono(contratoAModificar.getTelefono());
+        contrato.setFirmae(contratoAModificar.getFirmae());
+        icontratos.save(contrato);
+        
+        // Se crea el contrato de respuesta
+        ModificarServicioResponse.Contrato respuestaPayload = new ModificarServicioResponse.Contrato();
+        respuestaPayload.setCurp(contratoAModificar.getCurp());
+        respuestaPayload.setDomicilio(contratoAModificar.getDomicilio());
+        respuestaPayload.setFirmae(contratoAModificar.getFirmae());
+        respuestaPayload.setNContrato(contratoAModificar.getNcontrato());
+        respuestaPayload.setNombre(contratoAModificar.getNombre());
+        respuestaPayload.setTelefono(contratoAModificar.getTelefono());
+        
+        respuesta.setContrato(respuestaPayload);
+        
         return respuesta;
 
     }
 
-    //CONSULTAR TODOS LOS CONTRATSO
-    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos",localPart = "MostrarContratosRequest")
+    // CONSULTAR TODOS LOS CONTRATSO
+    @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "MostrarContratosRequest")
     @ResponsePayload
-    public MostrarContratosResponse MostrarTareas(){
+    public MostrarContratosResponse MostrarTareas() {
         MostrarContratosResponse respuesta = new MostrarContratosResponse();
         Iterable<Contrato> lista = icontratos.findAll();
-        
+
         for (Contrato cont : lista) {
             MostrarContratosResponse.Contratos e = new MostrarContratosResponse.Contratos();
             e.setNombre(cont.getNombre());

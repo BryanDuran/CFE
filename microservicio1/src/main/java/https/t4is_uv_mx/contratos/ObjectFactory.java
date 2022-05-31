@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
 // Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2022.05.20 a las 01:32:21 PM CDT 
+// Generado el: 2022.05.30 a las 09:15:25 PM CDT 
 //
 
 
@@ -41,11 +41,43 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AgregarContratoResponse }
+     * 
+     */
+    public AgregarContratoResponse createAgregarContratoResponse() {
+        return new AgregarContratoResponse();
+    }
+
+    /**
      * Create an instance of {@link ConsultarContratoResponse }
      * 
      */
     public ConsultarContratoResponse createConsultarContratoResponse() {
         return new ConsultarContratoResponse();
+    }
+
+    /**
+     * Create an instance of {@link CancelarServicioRequest }
+     * 
+     */
+    public CancelarServicioRequest createCancelarServicioRequest() {
+        return new CancelarServicioRequest();
+    }
+
+    /**
+     * Create an instance of {@link ModificarServicioRequest }
+     * 
+     */
+    public ModificarServicioRequest createModificarServicioRequest() {
+        return new ModificarServicioRequest();
+    }
+
+    /**
+     * Create an instance of {@link ModificarServicioResponse }
+     * 
+     */
+    public ModificarServicioResponse createModificarServicioResponse() {
+        return new ModificarServicioResponse();
     }
 
     /**
@@ -65,11 +97,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AgregarContratoResponse }
+     * Create an instance of {@link AgregarContratoResponse.Contrato }
      * 
      */
-    public AgregarContratoResponse createAgregarContratoResponse() {
-        return new AgregarContratoResponse();
+    public AgregarContratoResponse.Contrato createAgregarContratoResponseContrato() {
+        return new AgregarContratoResponse.Contrato();
     }
 
     /**
@@ -89,11 +121,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CancelarServicioRequest }
+     * Create an instance of {@link CancelarServicioRequest.Contrato }
      * 
      */
-    public CancelarServicioRequest createCancelarServicioRequest() {
-        return new CancelarServicioRequest();
+    public CancelarServicioRequest.Contrato createCancelarServicioRequestContrato() {
+        return new CancelarServicioRequest.Contrato();
     }
 
     /**
@@ -105,19 +137,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ModificarServicioRequest }
+     * Create an instance of {@link ModificarServicioRequest.ContratoAModificar }
      * 
      */
-    public ModificarServicioRequest createModificarServicioRequest() {
-        return new ModificarServicioRequest();
+    public ModificarServicioRequest.ContratoAModificar createModificarServicioRequestContratoAModificar() {
+        return new ModificarServicioRequest.ContratoAModificar();
     }
 
     /**
-     * Create an instance of {@link ModificarServicioResponse }
+     * Create an instance of {@link ModificarServicioRequest.ContratoNuevo }
      * 
      */
-    public ModificarServicioResponse createModificarServicioResponse() {
-        return new ModificarServicioResponse();
+    public ModificarServicioRequest.ContratoNuevo createModificarServicioRequestContratoNuevo() {
+        return new ModificarServicioRequest.ContratoNuevo();
+    }
+
+    /**
+     * Create an instance of {@link ModificarServicioResponse.Contrato }
+     * 
+     */
+    public ModificarServicioResponse.Contrato createModificarServicioResponseContrato() {
+        return new ModificarServicioResponse.Contrato();
     }
 
     /**

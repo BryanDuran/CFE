@@ -22,8 +22,6 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-DROP DATABASE IF EXISTS contratos;
-CREATE DATABASE contratos;
 use contratos;
 
 --
