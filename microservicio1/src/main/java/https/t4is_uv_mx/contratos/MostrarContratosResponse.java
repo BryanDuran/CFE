@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
 // Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2022.05.30 a las 09:15:25 PM CDT 
+// Generado el: 2022.05.31 a las 04:31:25 PM CDT 
 //
 
 
@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlType;
  *                   &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *                   &lt;element name="ncontrato" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *                   &lt;element name="firmae" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *                   &lt;element name="curp" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *                 &lt;/sequence&gt;
  *               &lt;/restriction&gt;
  *             &lt;/complexContent&gt;
@@ -101,6 +102,7 @@ public class MostrarContratosResponse {
      *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
      *         &lt;element name="ncontrato" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
      *         &lt;element name="firmae" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+     *         &lt;element name="curp" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
      *       &lt;/sequence&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
@@ -113,7 +115,8 @@ public class MostrarContratosResponse {
     @XmlType(name = "", propOrder = {
         "nombre",
         "ncontrato",
-        "firmae"
+        "firmae",
+        "curp"
     })
     public static class Contratos {
 
@@ -122,6 +125,8 @@ public class MostrarContratosResponse {
         protected int ncontrato;
         @XmlElement(required = true)
         protected String firmae;
+        @XmlElement(required = true)
+        protected String curp;
 
         /**
          * Obtiene el valor de la propiedad nombre.
@@ -185,6 +190,30 @@ public class MostrarContratosResponse {
          */
         public void setFirmae(String value) {
             this.firmae = value;
+        }
+
+        /**
+         * Obtiene el valor de la propiedad curp.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getCurp() {
+            return curp;
+        }
+
+        /**
+         * Define el valor de la propiedad curp.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setCurp(String value) {
+            this.curp = value;
         }
 
     }

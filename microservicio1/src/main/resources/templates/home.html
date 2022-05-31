@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ex" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Microservicio-Contratos</title>
+</head>
+<body>
+
+	<h1>
+		Proyecto Tecnologías Para La Integración de Soluciones <span th:text="${Thnombre}"> </span>
+	</h1>
+	<h2>Microservicio de Contratos</h2>
+    <p>
+        Para acceder dirigite a: <a href="https://microservicio-contrato.herokuapp.com/ws/contratos.wsdl">Contratos WSDL</a>
+    </p>
+	<p>
+		Este microservicio cuenta con 5 operaciones:
+	</p>
+	
+		<li>AgregarContrato: La persona proporciona su nombre, domicilio, telefono y curp. Entonces el contrato sera creado, y se le proporcionará su firma electrónica. La firma es generada gracias al consumo de nuestro <a href="https://t4is.herokuapp.com/firmas/">microservicio de firmas</a> <li>
+		<li>CancelarContrato: La persona proporciona su número de contrato, nombre, domicilio, teléfono, firma electrónica y curp, entonces el sistema validará si la información es correcta para proceder con la operación. La validación de la firma es gracias a la operación validar de nuestro <a href="https://t4is.herokuapp.com/firmas/">microservicio de firmas</a></li>
+        <li>ConsultarContrato: La persona proporciona su número de contrato, entonces el sistema retonara sus datos ingresados al crear el contrato.</li>
+        <li>ModificarServicio: La persona proporciona sus datos originagles, después ingresa los datos que modificará, el microservicio de firmas valida que los primeros datos sean correctos para proceder con la mofificación de los datos.</li>
+        <li>MostrarContratos: Para esta operación no es necesario proporcionar datos, el sistema retornara la lista de contratos creados, con datos como el nombre, número de contrato y la firmae. </li>
+	<p>
+		Este microservicio es consumido por el <a href="https://t4is.herokuapp.com/contratos/">microservicio de contratos</a> para crear una firma electrónica
+		y validar esta misma al realizar otras operaciones.
+	</p>
+	<footer>
+		<h2>Equipo 4</h2>
+	</footer>
+
+</body>
+</html>

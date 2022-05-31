@@ -45,7 +45,8 @@ public class ContratosEndPoint {
 
             //
             RestTemplate restTemplate = new RestTemplate();
-            String url = "https://microservicio-firma.herokuapp.com/firmar";
+            //String url = "https://microservicio-firma.herokuapp.com/firmar";
+            String url = "https://t4is.herokuapp.com/firmas/firmar";
             ResponseEntity<Contrato> contratoRespuesta = restTemplate.postForEntity(url, contratoGuardado,
                     Contrato.class);
             String firmae = contratoRespuesta.getBody().getFirmae();
@@ -74,15 +75,8 @@ public class ContratosEndPoint {
         ConsultarContratoResponse respuesta = new ConsultarContratoResponse();
         String ncontrato = Integer.toString(peticion.getNcontrato());
 
-        /*
-         * if (ncontrato.isEmpty() || peticion.getFirmae().isEmpty()) {
-         * respuesta.
-         * setRespuesta("No hemos encontrado tus datos, por favor vuelve a intentarlo.")
-         * ;
-         * }else{
-         */
-
-        Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(), peticion.getFirmae());
+        //Iterable<Contrato> lista = icontratos.findByNcontratoAndFirmae(peticion.getNcontrato(), peticion.getFirmae());
+        Iterable<Contrato> lista = icontratos.findByNcontrato(peticion.getNcontrato());
         for (Contrato cont : lista) {
             ConsultarContratoResponse.Contratos c = new ConsultarContratoResponse.Contratos();
             c.setNcontrato(cont.getNcontrato());
@@ -92,8 +86,6 @@ public class ContratosEndPoint {
             respuesta.getContratos().add(c);
 
         }
-
-        // }
 
         return respuesta;
 
@@ -109,7 +101,8 @@ public class ContratosEndPoint {
 
         // Se realiza la consulta a la api para obtener la validez del contrato
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://microservicio-firma.herokuapp.com/validar";
+        //String url = "https://microservicio-firma.herokuapp.com/validar";
+        String url = "https://t4is.herokuapp.com/firmas/validar";
         ResponseEntity<Boolean> esValidoRespuesta = restTemplate.postForEntity(url, contratoABorrar, Boolean.class);
         boolean esValido = esValidoRespuesta.getBody();
 
@@ -141,7 +134,8 @@ public class ContratosEndPoint {
 
         // Se realiza la consulta a la api para obtener la validez del contrato
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://microservicio-firma.herokuapp.com/validar";
+        //String url = "https://microservicio-firma.herokuapp.com/validar";
+        String url = "https://t4is.herokuapp.com/firmas/validar";
         ResponseEntity<Boolean> esValidoRespuesta = restTemplate.postForEntity(url, contratoAModificar, Boolean.class);
         boolean esValido = esValidoRespuesta.getBody();
 
@@ -159,7 +153,8 @@ public class ContratosEndPoint {
 
         //Se firma el contrato actualizado
         RestTemplate restTemplate2 = new RestTemplate();
-        String url2 = "https://microservicio-firma.herokuapp.com/firmar";
+        //String url2 = "https://microservicio-firma.herokuapp.com/firmar";
+        String url2 = "https://t4is.herokuapp.com/firmas/firmar";
         ResponseEntity<Contrato> contratoRespuesta = restTemplate2.postForEntity(url2, contratoAModificar,
                 Contrato.class);
         String firmae = contratoRespuesta.getBody().getFirmae();
@@ -190,7 +185,7 @@ public class ContratosEndPoint {
 
     }
 
-    // CONSULTAR TODOS LOS CONTRATSO
+    // CONSULTAR TODOS LOS CONTRATOS
     @PayloadRoot(namespace = "https://t4is.uv.mx/contratos", localPart = "MostrarContratosRequest")
     @ResponsePayload
     public MostrarContratosResponse MostrarTareas() {
@@ -202,6 +197,7 @@ public class ContratosEndPoint {
             e.setNombre(cont.getNombre());
             e.setNcontrato(cont.getNcontrato());
             e.setFirmae(cont.getFirmae());
+            e.setCurp(cont.getCurp());
             respuesta.getContratos().add(e);
         }
         return respuesta;

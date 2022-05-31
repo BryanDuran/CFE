@@ -38,7 +38,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element name="ncontrato" type="xs:int" />
-        <xs:element name="firmae" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -144,6 +143,7 @@
               <xs:element name="nombre" type="xs:string" />
               <xs:element name="ncontrato" type="xs:int" />
               <xs:element name="firmae" type="xs:string" />
+              <xs:element name="curp" type="xs:string" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
