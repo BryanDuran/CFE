@@ -1,5 +1,5 @@
 # Proyecto Final - Equipo 4
-## Tencologías Para La Integración de Soluciones
+## Tecnologías Para La Integración de Soluciones
 
 # Contenido
 1. [Integrantes](#Integrantes)

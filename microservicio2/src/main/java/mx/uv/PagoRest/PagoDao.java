@@ -7,16 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PagoDao {
     Connection con;
     
     public PagoDao() {
         try {
-            //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contratos","root","");
              con = DriverManager.getConnection("jdbc:mysql://uyh7dhyd1rhcfjyl:rzJW8GHa5dPykl9M5brf@bfqv9e6sevw1ay9awkdv-mysql.services.clever-cloud.com:3306/bfqv9e6sevw1ay9awkdv","uyh7dhyd1rhcfjyl","rzJW8GHa5dPykl9M5brf");
-            //con = DriverManager.getConnection("jdbc:mysql://admin:admin@localhost:3306/mydb","admin","admin");
             System.out.println("CONEXIÓN HECHA"); 
         } catch (SQLException sqle) {
             System.out.println(sqle);

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ex" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Microservicio-Pagos</title>
+</head>
+<body>
+
+	<h1>
+		Proyecto Tecnologías Para La Integración de Soluciones <span th:text="${Thnombre}"> </span>
+	</h1>
+	<h2>Microservicio de Pagos</h2>
+
+	<p>
+		Este microservicio cuenta con 2 operaciones:
+	</p>
+	
+		<li>Historial de pagos: La persona proporciona su número de contrato en el siguiente enlace <span ><b>https://microservicio-pago.herokuapp.com/pagos/contrato/nContrato</b></span> .En vez de nContrato ira el número de contrato proporcionado al crear el contrato en  <a href="https://microservicio-contrato.herokuapp.com/ws/contratos.wsdl">Contratos WSDL</a> </li>
+		<li>Pagar: La persona proporciona el monto a pagar, fecha y el número de contrato, esta operación es enviada por POST, por lo que se debe usar POSTMAN.</li>
+        <img src="https://i.ibb.co/QvvSkQx/post.png" width="70%"/>
+	<footer>
+		<h2>Equipo 4</h2>
+	</footer>
+
+</body>
+</html>
